@@ -3,16 +3,12 @@
  * @return {number}
  */
 var missingNumber = function(arr) {
-    let sum1 = 0;
-    let sum2 = 0;
-
-    for(let i = 0; i <= arr.length; i++){
-        sum1 += i;
-    }
+    let expectedSum = (arr.length * (arr.length + 1)) / 2;
+    let actualSum = 0;
 
     for(let j = 0; j < arr.length; j++){
-        sum2 += arr[j]
+        actualSum += arr[j]
     }
 
-    return Math.abs(sum1 - sum2);
+    return Math.abs(expectedSum - actualSum);
 };
