@@ -1,38 +1,35 @@
-var sortColors = function(nums) {
-    function findPivotIdx(arr, first, last) {
-        let pivot = arr[first];
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var sortColors = function(arr) {
+    // Second approch
+    let count1 = 0;
+    let count2 = 0;
+    let count3 = 0;
 
-        let i = first + 1;
-        let j = last;
-
-        while (i <= j) {
-            while (i <= last && arr[i] <= pivot) i++;
-            while (j > first && arr[j] >= pivot) j--;
-
-            if (i < j) {
-                swap(arr, i, j);
-            }
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] === 0){
+            count1++;
+        }else if(arr[i] === 1){
+            count2++;
+        }else{
+            count3++;
         }
-
-        swap(arr, first, j);
-
-        return j;
     }
 
-    function quickSort(arr, first, last) {
-        if (first >= last) return;
-
-        let pIdx = findPivotIdx(arr, first, last);
-
-        quickSort(arr, first, pIdx - 1);
-        quickSort(arr, pIdx + 1, last);
+    for(let j = 0; j < count1; j++){
+        arr[j] = 0
     }
 
-    function swap(arr, i, j) {
-        let temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+    for(let k = count1; k < count1 + count2; k++){
+        arr[k] = 1
     }
 
-    quickSort(nums, 0, nums.length - 1);
+    for(let l = count1 + count2; l < arr.length; l++){
+        arr[l] = 2
+    }
+
+
+    return arr;
 };
