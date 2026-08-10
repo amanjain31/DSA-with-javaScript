@@ -3,25 +3,19 @@
  * @return {number}
  */
 var majorityElement = function(arr) {
-    let map = new Map();
+    // 2nd and optimized approch 
+    let candidate = arr[0];
+    let count = 1;
 
-    for (let i = 0; i < arr.length; i++) {
-        if (map.has(arr[i])) {
-            map.set(arr[i], (map.get(arr[i])) + 1);
-        } else {
-            map.set(arr[i], 1);
+    for(let i = 1; i < arr.length; i++){
+        if(count === 0){
+            candidate = arr[i];
+            count = 1;
+        }else if(arr[i] === candidate){
+            count++;
+        }else{
+            count--;
         }
     }
-
-    let maxValue = 0;
-    let finalAnswer = 0
-
-    for (let [key, value] of map) {
-        if (maxValue < value) {
-            maxValue = value;
-            finalAnswer = key;
-        }
-    }
-
-    return finalAnswer;
+    return candidate;
 };
