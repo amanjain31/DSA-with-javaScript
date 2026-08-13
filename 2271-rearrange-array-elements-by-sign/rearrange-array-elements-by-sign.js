@@ -3,33 +3,21 @@
  * @return {number[]}
  */
 var rearrangeArray = function(arr) {
+    // 2nd thaught and optimized one
+    let answer = new Array(arr.length);
 
-    // first thaught for this question
-    let positive = [];
-    let negative = [];
+    let positiveIndex = 0;
+    let negativeIndex = 1;
 
-    for(let i = 0; i < arr.length; i++){
-        if(arr[i] >= 0){
-            positive.push(arr[i]);
-        }else{
-            negative.push(arr[i]);
+    for (let i = 0; i < arr.length; i++) {
+
+        if (arr[i] > 0) {
+            answer[positiveIndex] = arr[i];
+            positiveIndex += 2;
+        } else {
+            answer[negativeIndex] = arr[i];
+            negativeIndex += 2;
         }
     }
-
-    let i = 0;
-    let j = 0;
-    let Index = 0
-
-    for(let Index = 0; Index < arr.length; Index++){
-        if(Index % 2 === 0){
-            arr[Index] = positive[i];
-            i++;
-        }else{
-            arr[Index] = negative[j];
-            j++;
-        }
-        
-    }
-
-    return arr;
+    return answer;
 };
