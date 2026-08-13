@@ -3,6 +3,8 @@
  * @return {number[]}
  */
 var rearrangeArray = function(arr) {
+
+    // first thaught for this question
     let positive = [];
     let negative = [];
 
