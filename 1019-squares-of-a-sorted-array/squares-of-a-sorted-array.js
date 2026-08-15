@@ -1,17 +1,22 @@
-/**
- * @param {number[]} nums
- * @return {number[]}
- */
 var sortedSquares = function(arr) {
-    let ans = [];
-    let s;
+    let ans = new Array(arr.length);
 
+    let left = 0;
+    let right = arr.length - 1;
+    let index = arr.length - 1;
 
-    for(let i = 0; i < arr.length; i++){
-        s = arr[i] * arr[i];
-        ans.push(s);
+    while (left <= right) {
+
+        if (Math.abs(arr[left]) > Math.abs(arr[right])) {
+            ans[index] = arr[left] * arr[left];
+            left++;
+        } else {
+            ans[index] = arr[right] * arr[right];
+            right--;
+        }
+
+        index--;
     }
 
-    ans.sort((a, b) => a - b);
     return ans;
 };
