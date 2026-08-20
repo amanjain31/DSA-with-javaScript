@@ -4,23 +4,16 @@
  * @return {character}
  */
 var findTheDifference = function(s, t) {
-    let map = new Map();
+    // optimized solution using XOR
+    let ans = 0;
 
-    for (let i = 0; i < s.length; i++) {
-        map.set(s[i], (map.get(s[i]) || 0) + 1);
+    for(let char of s){
+        ans ^= char.charCodeAt(0)
     }
 
-    for (let i = 0; i < t.length; i++) {
-        map.set(t[i], (map.get(t[i]) || 0) - 1);
+    for(let char of t){
+        ans ^= char.charCodeAt(0)
     }
 
-    let difference = -1;
-
-    for(let [key, value] of map){
-        if(value === -1){
-            difference = key;
-        }
-    }
-
-    return difference;
+    return String.fromCharCode(ans);
 };
