@@ -15,9 +15,7 @@ var isAnagram = function(s, t) {
     for (let char of t) {
 
         if (!map.has(char)) return false;
-
         map.set(char, map.get(char) - 1);
-
         if (map.get(char) < 0) return false;
     }
 
