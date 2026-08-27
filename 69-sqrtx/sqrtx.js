@@ -3,11 +3,18 @@
  * @return {number}
  */
 var mySqrt = function(x) {
-    // first approch
-    let i = 1;
+    // 2nd approch and efficent one binary search
+    let first = 1, last = x, ans = 0;
 
-    for(; i*i <= x; i++){
-        if(i * i === x) return i;
+    while(first <= last){
+        let mid = Math.floor((first + last) / 2);
+
+        if(mid <= Math.floor(x/mid)){
+            ans = mid;
+            first = mid + 1
+        }else{
+             last = mid - 1
+        }
     }
-    return i - 1;
+    return ans;
 };
