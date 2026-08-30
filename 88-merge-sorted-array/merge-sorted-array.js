@@ -6,37 +6,19 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function(arr1, m, arr2, n) {
-    let newArray = new Array(m + n);
-    let left = 0;
-    let right = 0;
-    let newArrayIndex = 0;
+    let i = m - 1;
+    let j = n - 1;
+    let k = arr1.length - 1;
 
-    while(left < m && right < n){
-        if(arr1[left] < arr2[right]){
-            newArray[newArrayIndex] = arr1[left];
-            newArrayIndex++;
-            left++;
+    while(i >= 0 && j >= 0){
+        if(arr1[i] > arr2[j]){
+            arr1[k--] = arr1[i--]; 
         }else{
-            newArray[newArrayIndex] = arr2[right];
-            newArrayIndex++;
-            right++;
+            arr1[k--] = arr2[j--];
         }
     }
 
-    while(left < m){
-        newArray[newArrayIndex] = arr1[left];
-        newArrayIndex++;
-        left++;
+    while(j >= 0){
+        arr1[k--] = arr2[j--];
     }
-
-    while(right < n){
-        newArray[newArrayIndex] = arr2[right];
-        newArrayIndex++;
-        right++;
-    }
-
-    for(let i = 0; i < m + n; i++){
-        arr1[i] = newArray[i]; 
-    }
-
 };
