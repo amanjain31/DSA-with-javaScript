@@ -3,30 +3,17 @@
  * @return {number}
  */
 var trap = function(arr) {
-    let left = [];
-    let right = [];
+    // optimized approch for this question 
+    let left = 0, right = arr.length - 1, totel = 0;
 
-    let leftMax = arr[0];
-    left[0] = leftMax;
-    let rightMax = arr[arr.length - 1];
-    right[arr.length - 1] = rightMax;
+    let leftMax = 0, rightMax = 0;
 
-
-    for(let i = 1; i < arr.length; i++){
-        leftMax = Math.max(leftMax, arr[i]);
-        left[i] = leftMax;
+    while(left < right){
+        leftMax = Math.max(leftMax, arr[left]);
+        rightMax = Math.max(rightMax, arr[right]); 
+        
+        if(leftMax < rightMax) totel += leftMax - arr[left++];
+        else totel += rightMax - arr[right--];
     }
-
-    for(let i = arr.length - 2; i >= 0; i--){
-        rightMax = Math.max(rightMax, arr[i]);
-        right[i] = rightMax;
-    }
-
-    let totelUnitOfWater = 0;
-
-    for(let i = 0; i < arr.length; i++){
-        totelUnitOfWater += Math.min(left[i], right[i]) - arr[i];
-    }
-
-    return totelUnitOfWater;
+    return totel;
 };
