@@ -3,28 +3,31 @@
  * @return {number}
  */
 var longestConsecutive = function(arr) {
-    const set = new Set();
+    let longest = 0;
+    let map = new Map();
 
-    for(const num of arr){
-        set.add(num);
+    for (let i = 0; i < arr.length; i++) {
+        map.set(arr[i], true);
     }
 
-    let max = 0;
-
-    for(let nums of set){
-        let val = nums;
-        let count = 1;
-        
-        if(set.has(val - 1)){
-            continue;
+    for (let i = 0; i < arr.length; i++) {
+        if (map.has(arr[i] - 1)) {
+            map.set(arr[i], false)
         }
-        
-        while(set.has(++val)){
-            count++;
-        }
-        
-        max = Math.max(max, count);
     }
 
-    return max;
+    for (let key of map.keys()) {
+        if (map.get(key)) {
+            let count = 1;
+
+            while (map.has(key + count)) {
+                count++;
+            }
+
+            longest = Math.max(count, longest);
+        }
+
+    }
+
+    return longest;
 };
